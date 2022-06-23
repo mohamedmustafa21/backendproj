@@ -25,11 +25,18 @@ use App\Http\Controllers\CommentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resources([
-    'customers' => CustomerController::class,
-    'branches' => BranchController::class,
-    'campaigns' => CampaignController::class,
-    'requests' => RequestController::class,
-    'items' => ItemController::class,
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resources([
+        'customers' => CustomerController::class,
+        'branches' => BranchController::class,
+        'campaigns' => CampaignController::class,
+        'requests' => RequestController::class,
+        'items' => ItemController::class,
 
-]);
+    ]);
+    Route::post('register', [AuthController::class, 'register']);
+
+});
+Route::post('login', [AuthController::class, 'login']);
+
+

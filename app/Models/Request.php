@@ -33,9 +33,9 @@ class Request extends Model
         return $this->belongsTo(User::class);
         
     }
-    public function request_product()
+    public function request_products()
     {
-        return $this->belongsTo(RequestsProduct::class);
+        return $this->hasMany(RequestsProduct::class);
         
     }
 

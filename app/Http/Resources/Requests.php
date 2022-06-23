@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Requests extends JsonResource
 {
+
+    
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +16,17 @@ class Requests extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+
+            'id' => $this->id,
+            'customer' => $this->customer,
+            'customer' => $this->customer,
+            'oncharge_user_name' => $this->user->name,
+            'request_products' => $this->request_products,
+            'date_of_call' => $this->date_of_call,
+            'date_for_call_back' => $this->date_for_call_back,
+            'status'=> $this->status
+
+        ]; 
     }
 }

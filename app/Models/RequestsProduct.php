@@ -15,14 +15,14 @@ class RequestsProduct extends Model
     ];
 
 
-    public function products()
+    public function product()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
         
     }
-    public function requests()
+    public function request()
     {
-        return $this->hasMany(Request::class);
+        return $this->belongsTo(Request::class);
         
     }
 
