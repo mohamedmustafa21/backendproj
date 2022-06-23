@@ -6,8 +6,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RequestProductController;
+use App\Http\Controllers\RequestsProductController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AuthController;
 
 
 
@@ -28,10 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resources([
         'customers' => CustomerController::class,
-        'branches' => BranchController::class,
-        'campaigns' => CampaignController::class,
+        'phones' => PhoneController::class,
+        'products' => ProductController::class,
         'requests' => RequestController::class,
-        'items' => ItemController::class,
+        'requests_products' => RequestsProductController::class,
+        'comments' => CommentController::class,
 
     ]);
     Route::post('register', [AuthController::class, 'register']);
