@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('make');
             $table->string('model');
-            $table->string('stock_number');
+            $table->string('stock_number')->unique();
             $table->float('price')->nullable();
             $table->timestamps();
         });
