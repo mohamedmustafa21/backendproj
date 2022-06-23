@@ -9,6 +9,12 @@ class RequestsProduct extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'request_id',
+        'product_id',
+    ];
+
+
     public function products()
     {
         return $this->hasMany(Product::class);
