@@ -45,6 +45,7 @@ return response([
 
     $token = $user->createToken('mytoken')->plainTextToken;
     $response = [
+        'message' => 'Success',
         'user' => $user,
         'token' => $token
     ];
