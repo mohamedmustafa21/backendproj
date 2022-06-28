@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RequestsProduct;
+
 
 class RequestsProductController extends Controller
 {
@@ -13,18 +15,9 @@ class RequestsProductController extends Controller
      */
     public function index()
     {
-        //
+        return RequestsProducts::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +27,12 @@ class RequestsProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'request_id' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        return RequestsProducts::create($validated);
     }
 
     /**
@@ -45,18 +43,7 @@ class RequestsProductController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return RequestsProducts::find($id);
     }
 
     /**
@@ -68,7 +55,14 @@ class RequestsProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required',
+            'request_id' => 'required',
+            'product_id' => 'required',
+        ]);
+            $requestsproducts = RequestsProducts::find($id);
+            $requestsproducts->update($validated);
+        return $requestsproducts;
     }
 
     /**
@@ -79,6 +73,7 @@ class RequestsProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+        return ('Deleted Successfully');
     }
 }

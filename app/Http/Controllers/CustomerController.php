@@ -26,16 +26,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'email' => 'required',
-        //     'type' => 'required',
-        //     'state' => 'required',
-        //     'city' => 'required',
-        // ]);
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'type' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+        ]);
 
-        return Customer::create($request->all());
+        return Customer::create($validated);
     }
 
     /**

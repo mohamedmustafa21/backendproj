@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Request as SalesRequests;
+use App\Http\Resources\Requests as RequestsResource;
+
+
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -13,18 +17,9 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $requests = SalesRequests::all();
+        return RequestsResource::collection($requests);
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +29,16 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'customer_id' => 'required',
+            'oncharge_user' => 'required',
+            'date_of_call' => 'required',
+            'date_for_call_back' => 'required',
+            'status' => 'required',
+        ]);
+
+        return SalesRequests::create($validated);
+        
     }
 
     /**
@@ -45,19 +49,11 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $request = SalesRequests::find($id)->all();
+        return RequestsResource::collection($request);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,7 +64,19 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required',
+            'customer_id' => 'required',
+            'oncharge_user' => 'required',
+            'date_of_call' => 'required',
+            'date_for_call_back' => 'required',
+            'status' => 'required',
+        ]);
+
+            $salesrequest = SalesRequests::find($id);
+            $salesrequest->update($validated);
+        return $salesrequest;
+
     }
 
     /**
@@ -79,6 +87,7 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SalesRequests::destroy($id);
+        return ('Deleted Successfully');
     }
 }

@@ -30,7 +30,7 @@ class Request extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'oncharge_user');
         
     }
     public function request_products()

@@ -20,8 +20,7 @@ class Requests extends JsonResource
 
             'id' => $this->id,
             'customer' => $this->customer,
-            'customer' => $this->customer,
-            'oncharge_user_name' => $this->user->name,
+            'user' => $this->user,
             'request_products' => $this->request_products,
             'date_of_call' => $this->date_of_call,
             'date_for_call_back' => $this->date_for_call_back,
