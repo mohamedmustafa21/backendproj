@@ -26,16 +26,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'type' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'required',
+        //     'type' => 'required',
+        //     'state' => 'required',
+        //     'city' => 'required',
+        // ]);
 
-        return Customer::create($validated);
+        return Customer::create($request->all());
     }
 
     /**
@@ -75,6 +75,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Customer::destroy($id);
+        return ('Deleted Successfully');
     }
 }
