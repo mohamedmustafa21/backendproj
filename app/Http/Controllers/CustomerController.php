@@ -33,6 +33,9 @@ class CustomerController extends Controller
             'type' => 'required',
             'state' => 'required',
             'city' => 'required',
+            'phone_1' => 'required',
+            'phone_2' => '',
+
         ]);
 
         return Customer::create($validated);
@@ -59,9 +62,16 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id' => 'required',
-            'comment' => 'required',
-            'request_id' => 'required',]);
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'type' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'phone_1' => 'required',
+            'phone_2' => '',
+
+        ]);
             $customer = Customer::find($id);
             $customer->update($validated);
         return $customer;

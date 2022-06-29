@@ -31,7 +31,7 @@ class ProductController extends Controller
                 'make' => 'required',
                 'model' => 'required',
                 'stock_number' => 'required',
-                'price',
+                'price' => '',
             ]);
     
             return Product::create($validated);
@@ -64,7 +64,7 @@ class ProductController extends Controller
             'make' => 'required',
             'model' => 'required',
             'stock_number' => 'required',
-            'price',
+            'price' => '',
         ]);
             $product = Product::find($id);
             $product->update($validated);

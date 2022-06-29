@@ -15,6 +15,8 @@ class Customer extends Model
         'type',
         'city',
         'state',
+        'phone_1',
+        'phone_2',
     ];
 
     use HasFactory;
