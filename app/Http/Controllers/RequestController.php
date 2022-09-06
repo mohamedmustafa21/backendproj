@@ -38,7 +38,7 @@ class RequestController extends Controller
         ]);
 
         return SalesRequests::create($validated);
-        
+
     }
 
     /**
