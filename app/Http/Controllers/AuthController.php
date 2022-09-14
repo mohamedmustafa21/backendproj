@@ -21,26 +21,27 @@ class AuthController extends Controller
         'email' => $fields['email'],
         'password' => bcrypt($fields['password'])
     ]);
-    // $token = $user->createToken('mytoken')->plainTextToken;
+    $token = $user->createToken('mytoken')->plainTextToken;
     $response = [
         'message' => 'Success',
         'user' => $user,
-        // 'token' => $token
+        'token' => $token
     ];
     return response ($response, 201);
    }
 
    public function login(Request $request) {
     $fields = $request->validate([
-        'email' => 'required|string',
-        'password' => 'required|string'
+        'email' => '',
+        'password' => ''
     ]);
     $user = User::where('email',  $fields['email'])->first();
-        if(!$user || !Hash::check($fields['password'], $user->password)){
+        if(!$user || !Hash::check($fields['password'], $user->password))
+        {
 return response([
 
-    'message' => 'Wrong password or email'
-], 401);
+    'Message' => 'Wrong password or email'
+]);
 
 }
 
@@ -53,11 +54,11 @@ return response([
     return response ($response, 201);
    }
 
-   public function logout(Request $request) {
-        auth()->user()->tokens()->delete();
+//    public function logout(Request $request) {
+//         auth()->user()->tokens()->delete();
 
-        return[
-            'message' => 'Logged Out Successfully'
-        ];
-   }
+//         return[
+//             'message' => 'Logged Out Successfully'
+//         ];
+//    }
 }

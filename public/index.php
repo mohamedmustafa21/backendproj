@@ -8,7 +8,12 @@ define('LARAVEL_START', microtime(true));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Headers: *');
+
+// header('Access-Control-Allow-Origin',"*");
+// header('Access-Control-Allow-Methods',"PUT,POST,DELETE,GET,OPTIONS");
+// header('Access-Control-Allow-Headers',"Accept,Authorization,Content-Type");
 /*
+
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
 |--------------------------------------------------------------------------
