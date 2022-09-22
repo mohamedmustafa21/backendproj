@@ -6,16 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-
+use Error;
 
 class AuthController extends Controller
 {
    public function register(Request $request) {
     $fields = $request->validate([
-        'name' => 'required|string',
-        'email' => 'required|string|unique:users,email',
-        'password' => 'required|string|confirmed'
+        'name' => 'required',
+        'email' => 'required|unique:users,email',
+        'password' => 'required|confirmed'
     ]);
+    // return response(request());
+    // if ($request->validate->fails()
+    // ) {
+    //    return response()
+    // };
+
+
+
     $user = User::create([
         'name' => $fields['name'],
         'email' => $fields['email'],
@@ -27,8 +35,10 @@ class AuthController extends Controller
         'user' => $user,
         'token' => $token
     ];
-    return response ($response, 201);
+    return response ($response);
+
    }
+
 
    public function login(Request $request) {
     $fields = $request->validate([
@@ -47,7 +57,7 @@ return response([
 
     $token = $user->createToken('mytoken')->plainTextToken;
     $response = [
-        'message' => 'Success',
+        'Message' => 'Success',
         'user' => $user,
         'token' => $token
     ];

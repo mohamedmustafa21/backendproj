@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class Cors
 {
+    
     /**
      * Handle an incoming request.
      *
@@ -16,6 +17,7 @@ class Cors
      */
     public function handle(Request $request, Closure $next)
     {
+
         return $next($request);
 
 
